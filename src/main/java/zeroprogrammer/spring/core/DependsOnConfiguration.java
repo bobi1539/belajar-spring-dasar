@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Lazy;
 import zeroprogrammer.spring.core.data.Bar;
 import zeroprogrammer.spring.core.data.Foo;
 
@@ -15,6 +16,7 @@ public class DependsOnConfiguration {
     @DependsOn({
             "bar"
     })
+    @Lazy
     public Foo foo(){
       log.info("Create new foo");
       return new Foo();
