@@ -15,4 +15,8 @@ public class CategoryService {
     public void setCategoryRepository(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
     }
+
+    public String getCategory(){
+        return this.categoryRepository.getCategory();
+    }
 }

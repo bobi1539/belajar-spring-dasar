@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import zeroprogrammer.spring.core.data.MultiFoo;
 import zeroprogrammer.spring.core.repository.CategoryRepository;
 import zeroprogrammer.spring.core.repository.CustomerRepository;
 import zeroprogrammer.spring.core.repository.ProductRepository;
@@ -47,8 +48,22 @@ public class ComponentTest {
     @Test
     void testFieldDependencyInjection() {
         CustomerService customerService = applicationContext.getBean(CustomerService.class);
-        CustomerRepository customerRepository = applicationContext.getBean(CustomerRepository.class);
+        CustomerRepository normalCustomerRepository = applicationContext.getBean("normalCustomerRepository", CustomerRepository.class);
+        CustomerRepository premiumCustomerRepository = applicationContext.getBean("premiumCustomerRepository", CustomerRepository.class);
 
-        Assertions.assertSame(customerService.getCustomerRepository(), customerRepository);
+        Assertions.assertSame(customerService.getNormalCustomerRepository(), normalCustomerRepository);
+        Assertions.assertSame(customerService.getPremiumCustomerRepository(), premiumCustomerRepository);
+    }
+
+    @Test
+    void testObjectProvider() {
+        MultiFoo multiFoo = applicationContext.getBean(MultiFoo.class);
+        Assertions.assertEquals(3, multiFoo.getFoos().size());
+    }
+
+    @Test
+    void testGetCategory() {
+        CategoryService categoryService = applicationContext.getBean(CategoryService.class);
+        Assertions.assertEquals("get category", categoryService.getCategory());
     }
 }

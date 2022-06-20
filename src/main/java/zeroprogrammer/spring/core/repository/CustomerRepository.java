@@ -2,6 +2,6 @@ package zeroprogrammer.spring.core.repository;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class CustomerRepository {
 }
