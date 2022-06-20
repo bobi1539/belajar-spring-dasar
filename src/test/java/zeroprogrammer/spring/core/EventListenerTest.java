@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import zeroprogrammer.spring.core.listener.LoginAgainSuccessListener;
 import zeroprogrammer.spring.core.listener.LoginSuccessListener;
+import zeroprogrammer.spring.core.listener.UserListener;
 import zeroprogrammer.spring.core.service.UserService;
 
 public class EventListenerTest {
@@ -16,7 +17,8 @@ public class EventListenerTest {
     @Import({
             LoginSuccessListener.class,
             LoginAgainSuccessListener.class,
-            UserService.class
+            UserService.class,
+            UserListener.class
     })
     public static class TestConfiguration{
 
